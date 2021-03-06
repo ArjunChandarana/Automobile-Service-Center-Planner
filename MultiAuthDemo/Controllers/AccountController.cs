@@ -17,7 +17,7 @@ using MultiAuthDemo.Validation.Interfaces;
 
 namespace MultiAuthDemo.Controllers
 {
-    [Authorize]
+    //[Authorize]
     public class AccountController : Controller
     {
         private ApplicationSignInManager _signInManager;
@@ -66,7 +66,7 @@ namespace MultiAuthDemo.Controllers
         public ActionResult Login(string returnUrl)
         {
             ViewBag.ReturnUrl = returnUrl;
-            return View();
+            return PartialView();
         }
 
         //
@@ -110,7 +110,7 @@ namespace MultiAuthDemo.Controllers
                 case SignInStatus.Failure:
                 default:
                     ModelState.AddModelError("", "Invalid login attempt.");
-                    return View(model);
+                    return PartialView(model);
             }
         }
 
@@ -164,7 +164,7 @@ namespace MultiAuthDemo.Controllers
         {
             ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
                                     .ToList(), "Name", "Name");
-            return View();
+            return PartialView();
         }
 
         //
@@ -197,9 +197,10 @@ namespace MultiAuthDemo.Controllers
                                   .ToList(), "Name", "Name");
                 AddErrors(result);
             }
-
+            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
+                                .ToList(), "Name", "Name");
             // If we got this far, something failed, redisplay form
-            return View(model);
+            return PartialView(model);
         }
 
         //
@@ -451,6 +452,18 @@ namespace MultiAuthDemo.Controllers
             }
 
             base.Dispose(disposing);
+        }
+
+        [HttpGet]
+        public ActionResult TempRegistration(RegisterViewModel model, string returnUrl)
+        {
+            return PartialView(model);
+        }
+
+        [HttpGet]
+        public ActionResult TempLogin(LoginViewModel model, string returnUrl)
+        {
+            return PartialView(model);
         }
 
         #region Helpers

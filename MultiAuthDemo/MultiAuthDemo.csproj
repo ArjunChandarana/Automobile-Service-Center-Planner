@@ -316,7 +316,9 @@
     <Content Include="Template\assets\img\error-404-monochrome.svg" />
     <Content Include="Template\css\Popup-form.css" />
     <Content Include="Template\css\styles.css" />
+    <Content Include="Template\css\TempRegistration.css" />
     <Content Include="Template\js\scripts.js" />
+    <Content Include="Template\js\TempRegistration.js" />
     <Content Include="Validation\Data\UserContext.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
       <DependentUpon>UserContext.edmx</DependentUpon>
@@ -370,6 +372,8 @@
     <Content Include="Validation\Data\UserContext.edmx.diagram">
       <DependentUpon>UserContext.edmx</DependentUpon>
     </Content>
+    <Content Include="Views\Account\TempRegistration.cshtml" />
+    <Content Include="Views\Account\TempLogin.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

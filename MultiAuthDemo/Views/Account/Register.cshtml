@@ -1,58 +1,43 @@
 ﻿@model MultiAuthDemo.Models.RegisterViewModel
-@{
-    ViewBag.Title = "Register";
-}
+@{ ViewBag.Title = "Register"; }
 
 <h2>@ViewBag.Title.</h2>
 
-@using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+<link href="~/Template/css/TempRegistration.css" rel="stylesheet" />
+
+<h2>Weekly Coding Challenge #1: Sign in/up Form</h2>
+<div class="container right-panel-active" id="container">
+    <div class="form-container sign-up-container">
+        @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "", role = "form" }))
 {
     @Html.AntiForgeryToken()
-    <h4>Create a new account.</h4>
-    <hr />
     @Html.ValidationSummary("", new { @class = "text-danger" })
-    <div class="form-group">
-        @Html.LabelFor(m => m.Email, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.Email, new { @class = "form-control" })
-        </div>
-    </div>
 
-
-    <div class="form-group">
-        @Html.LabelFor(m => m.UserName, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.TextBoxFor(m => m.UserName, new { @class = "form-control" })
+            <h1>Create Account</h1>
+            <div class="social-container"></div>
+            @Html.TextBoxFor(m => m.Email, new { @class = "", placeholder = "Email" })
+                @Html.TextBoxFor(m => m.UserName, new { @class = "", placeholder = "User Name" })
+                @Html.PasswordFor(m => m.Password, new { @class = "", placeholder ="Password"})
+                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "", placeholder ="ConfirmPassword"})
+             @Html.DropDownList("UserRoles", (SelectList)ViewBag.Name, " ")
+                 
+                <input type="submit" class="ghost" id="signIn" value="Register" />
+        }
+    </div>
+     
+    <div class="overlay-container">
+        <div class="overlay">
+            <div class="overlay-panel overlay-left">
+                <h1>Welcome Back!</h1>
+                <p>To keep connected with us please login with your personal info</p>
+                <a href="@Url.Action("Login", "Account")"><button class="ghost" id="signIn">Sign In</button></a>
+            </div>
+             
         </div>
     </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.Password, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.Password, new { @class = "form-control" })
-        </div>
-    </div>
-    <div class="form-group">
-        @Html.LabelFor(m => m.ConfirmPassword, new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "form-control" })
-        </div>
-    </div>
-
-    <div class="form-group">
-        @Html.Label("user Role", new { @class = "col-md-2 control-label" })
-        <div class="col-md-10">
-            @*@Html.DropDownList("Name")*@
-            @Html.DropDownList("UserRoles", (SelectList)ViewBag.Name, " ")
-        </div>
-    </div>
-
-    <div class="form-group">
-        <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Register" />
-        </div>
-    </div>
-}
+</div>
 
 @section Scripts {
     @Scripts.Render("~/bundles/jqueryval")
 }
+
