@@ -1,0 +1,42 @@
+﻿@model ASC.Entities.Brand
+
+<div class="modal-content">
+    <div class="form-horizontal">
+        @using (Html.BeginForm("Create", "Brand", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="card-body">
+                <h5 class="card-title">
+                    Brand Form
+                    <span class="close" id="close">&times;</span>
+                </h5>
+                <br>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.IsActive, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
+
+                    <div class="col-md-9">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.IsActive)
+                            @Html.ValidationMessageFor(model => model.IsActive, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-top">
+                <div class="card-body" align="center">
+                    <button type="Submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

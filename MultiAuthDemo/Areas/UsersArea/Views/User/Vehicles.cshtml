@@ -1,0 +1,92 @@
+﻿@model IEnumerable<ASC.Entities.Vehicle>
+
+@{
+    ViewBag.Title = "Vehicles";
+}
+    <div class="container-fluid">
+        <h1 class="mt-4">User Info</h1>
+
+        @foreach (var item in Model)
+        {
+
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">
+                    @Html.DisplayFor(modelItem => item.NumberPlate)
+                </li>
+            </ol>
+
+            <div class="card-body">
+                <div class="table-responsive">
+                    <table class="table" width="100%" cellspacing="0">
+                        <tr>
+                            <td width="25%">
+                                <b>
+                                    @Html.DisplayNameFor(model => model.Name)
+                                </b>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Name)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>
+                                    @Html.DisplayNameFor(model => model.ChassisNumber)
+                                </b>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.ChassisNumber)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>
+                                    @Html.DisplayNameFor(model => model.RegistrationDate)
+                                </b>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.RegistrationDate)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>
+                                    @Html.DisplayNameFor(model => model.LastServiceDate)
+                                </b>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.LastServiceDate)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <b>
+                                    @Html.DisplayNameFor(model => model.FuelType)
+                                </b>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.FuelType)
+                            </td>
+                        </tr>
+                        
+                        <tr>
+                            <td>
+                                <b>
+                                    @Html.DisplayNameFor(model => model.Model)
+                                </b>
+                            </td>
+                            <td>
+                                @Html.DisplayFor(modelItem => item.Model.Name)
+                            </td>
+                        </tr>
+                        <tr>
+                            <td colspan="3">
+                            </td>
+                        </tr>
+                    </table>
+                </div>
+
+            </div>
+        }
+    </div>
+

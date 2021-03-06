@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="81cdfe81ce9f45c58813f1712f644b24" Name="Diagram1">
+        <EntityTypeShape EntityType="SampleDBModel.AspNetRole" Width="1.5" PointX="7.75" PointY="3.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleDBModel.AspNetUser" Width="1.5" PointX="10" PointY="2.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleDBModel.Brand" Width="1.5" PointX="0.75" PointY="4.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleDBModel.Customer" Width="1.5" PointX="3" PointY="4.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleDBModel.DealerBrand" Width="1.5" PointX="6" PointY="8.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleDBModel.Dealer" Width="1.5" PointX="0.75" PointY="7.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleDBModel.Mechanic" Width="1.5" PointX="3" PointY="10.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleDBModel.Model" Width="1.5" PointX="3" PointY="0.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleDBModel.SelectedService" Width="1.5" PointX="5.25" PointY="14.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleDBModel.ServiceBooking" Width="1.5" PointX="3" PointY="13.75" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleDBModel.Service" Width="1.5" PointX="3" PointY="18.25" IsExpanded="true" />
+        <EntityTypeShape EntityType="SampleDBModel.Vehicle" Width="1.5" PointX="5.25" PointY="4.25" IsExpanded="true" />
+        <AssociationConnector Association="SampleDBModel.FK_DealerBrands_Brands" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleDBModel.FK_Models_Brands" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleDBModel.FK_Customers_Dealers" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleDBModel.FK_Vehicles_Customers" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleDBModel.FK_DealerBrands_Dealers" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleDBModel.FK_Mechanics_Dealers" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleDBModel.FK_ServiceBookings_Dealers" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleDBModel.FK_Vehicles_Models" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleDBModel.FK_SelectedServices_ServiceBookings" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleDBModel.FK_SelectedServices_Services" ManuallyRouted="false" />
+        <AssociationConnector Association="SampleDBModel.AspNetUserRoles" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

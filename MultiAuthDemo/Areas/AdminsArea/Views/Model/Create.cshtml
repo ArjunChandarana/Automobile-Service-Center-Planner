@@ -1,0 +1,49 @@
+﻿@model ASC.Common.ModelFormViewModel
+
+<div class="modal-content">
+    <div class="form-horizontal">
+        @using (Html.BeginForm("Create", "Model", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+
+        <div class="card-body">
+            <h5 class="card-title">
+                Model Form
+                <span class="close" id="close">&times;</span>
+            </h5>
+            <br>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.modelData.Name, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
+                <div class="col-md-9">
+                    @Html.EditorFor(model => model.modelData.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.modelData.Name, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.modelData.BrandId, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
+                <div class="col-md-8">
+                    @Html.DropDownListFor(model => model.modelData.BrandId, new SelectList(Model.brands, "Id", "Name"), "Select", new { @class = "form-control" })
+                    @Html.ValidationMessageFor(model => model.modelData.BrandId, "", new { @class = "text-danger" })
+                </div>
+            </div>
+            <div class="form-group row">
+                @Html.LabelFor(model => model.modelData.IsActive, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
+
+                <div class="col-md-9">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.modelData.IsActive)
+                        @Html.ValidationMessageFor(model => model.modelData.IsActive, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+        </div>
+
+            <div class="border-top">
+                <div class="card-body" align="center">
+                    <button type="Submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

@@ -1,0 +1,70 @@
+﻿@model ASC.Common.CustomerFormModel
+
+
+<div class="modal-content">
+    <div class="form-horizontal">
+        @using (Html.BeginForm("Create", "Customer", FormMethod.Post))
+        {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="card-body">
+                <h5 class="card-title">
+                    Customer Form
+                    <span class="close" id="close">&times;</span>
+                </h5>
+                <br>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.customer.Name, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.customer.Name, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.customer.Name, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.customer.Email, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.customer.Email, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.customer.Email, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.customer.PhoneNumber, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.customer.PhoneNumber, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.customer.PhoneNumber, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.customer.Address, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
+                    <div class="col-md-9">
+                        @Html.EditorFor(model => model.customer.Address, new { htmlAttributes = new { @class = "form-control" } })
+                        @Html.ValidationMessageFor(model => model.customer.Address, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.customer.DealerId, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
+                    <div class="col-md-9">
+                        @Html.DropDownListFor(model => model.customer.DealerId, new SelectList(Model.dealers, "Id", "Name"), "Select", new { @class = "form-control" })
+                        @Html.ValidationMessageFor(model => model.customer.DealerId, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+                <div class="form-group row">
+                    @Html.LabelFor(model => model.customer.IsActive, htmlAttributes: new { @class = "control-label col-md-3 m-t-15" })
+                    <div class="col-md-9">
+                        <div class="checkbox">
+                            @Html.EditorFor(model => model.customer.IsActive)
+                            @Html.ValidationMessageFor(model => model.customer.IsActive, "", new { @class = "text-danger" })
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="border-top">
+                <div class="card-body" align="center">
+                    <button type="Submit" class="btn btn-primary">Submit</button>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+

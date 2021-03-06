@@ -1,0 +1,159 @@
+﻿@model IEnumerable<ASC.Entities.Brand>
+
+@{
+    ViewBag.Title = "Index";
+}
+<link href="~/Template/css/Popup-form.css" rel="stylesheet" />
+
+<div class="container-fluid">
+    <h1 class="mt-4">Brands</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">
+            <button id="myBtn" type="Submit" class="btn btn-danger" style="float: right;"><i class="fas fa-plus"></i> Brand</button>
+        </li>
+    </ol>
+    
+    <div class="card mb-4">
+        <div class="card-header">
+
+            <i class="fas fa-table mr-1"></i>
+            DataTable Example
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IsActive)
+                            </th>
+                            <th>
+
+                            </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+                        @foreach (var item in Model)
+                        {
+                            <tr>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.Name)
+                                </td>
+                                <td>
+                                    @Html.DisplayFor(modelItem => item.IsActive)
+                                </td>
+                                <td>
+                                    <button type="Submit" value="@item.Id" class="Editform btn btn-primary">
+                                        <i class="far fa-edit"></i>
+                                    </button>
+                                    @if (item.IsActive == true)
+                                    {
+                                        <a href='@Url.Action("Delete","Brand", new { id = item.Id })' class="btn btn-danger">
+                                            <i class="fas fa-toggle-off"></i>
+                                        </a>
+                                    }
+                                    else
+                                    {
+                                        <a href='@Url.Action("Delete","Brand", new { id = item.Id })' class="btn btn-success">
+                                            <i class="fas fa-toggle-on"></i>
+                                        </a>
+                                    }
+
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+
+                    <tfoot>
+                        <tr>
+                            <th>
+                                @Html.DisplayNameFor(model => model.Name)
+                            </th>
+                            <th>
+                                @Html.DisplayNameFor(model => model.IsActive)
+                            </th>
+                            <th>
+
+                            </th>
+                        </tr>
+                    </tfoot>
+                </table>
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+<div id="myModal" class="modal" style="width:100%; padding-right:30%;">
+
+</div>
+
+
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            $("#myBtn").click(function (evt) {
+
+                $.get( '@Url.Action("Create", "Brand", new {} )', function(data) {
+                    $('#myModal').html(data);
+                    $('#myModal').css("display", "block");
+                });
+            });
+
+            $(".Editform").click(function (evt) {
+                var CatID = $(this).val();
+                $.get('@Url.Action("Edit", "Brand")?id=' + CatID, function(data) {
+                    $('#myModal').html(data);
+                    $('#myModal').css("display","block");
+                });
+            });
+        });
+    </script>
+
+    <script type="text/javascript">
+        var modal = document.getElementById("myModal");
+        window.onclick = function (event) {
+            if (event.target == modal) {
+                modal.style.display = "none";
+                modal.innerHTML = "";
+            }
+        }
+    </script>
+
+
+
+    <script>
+    $(document).ready(function () {
+        toastr.options = {
+            "closeButton": true,
+            "debug": false,
+            "onclick": null,
+            "showDuration": "200",
+            "hideDuration": "1500",
+            "timeOut": "6000",
+            "extendedTimeOut": "1200",
+            "showEasing": "swing",
+            "hideEasing": "linear",
+            "showMethod": "fadeIn",
+            "hideMethod": "fadeOut"
+        };
+        
+        var Type = "@TempData["Type"]";
+        var Message = "@TempData["Message"]";
+        if (Type == "0") {
+            toastr.success(Message, 'The Site Says')
+        } else if (Type == "1") {
+            toastr.info(Message, 'The Site Says')
+        } else if (Type == "2") {
+            toastr.warning(Message, 'The Site Says')
+        } else if (Type == "3") {
+            toastr.error(Message, 'Inconceivable!')
+        }
+    });
+    </script>
+}

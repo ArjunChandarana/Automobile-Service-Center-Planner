@@ -1,0 +1,126 @@
+﻿@model ASC.Entities.Customer
+
+@{
+    ViewBag.Title = "Detail";
+}
+
+
+
+
+<div class="container-fluid">
+    <h1 class="mt-4">User Info</h1>
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">
+            Personal Details
+        </li>
+    </ol>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table" width="100%" cellspacing="0">
+                <tr>
+                    <td  width="25%">
+                        <b>
+                            @Html.DisplayNameFor(model => model.Name)
+                        </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Name)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>
+                            @Html.DisplayNameFor(model => model.Email)
+                        </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Email)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>
+                            @Html.DisplayNameFor(model => model.PhoneNumber)
+                        </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.PhoneNumber)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>
+                            @Html.DisplayNameFor(model => model.Address)
+                        </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Address)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>
+                            @Html.DisplayNameFor(model => model.IsActive)
+                        </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.IsActive)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+
+    <ol class="breadcrumb mb-4">
+        <li class="breadcrumb-item active">
+            Dealer Details
+        </li>
+    </ol>
+
+    <div class="card-body">
+        <div class="table-responsive">
+            <table class="table" width="100%" cellspacing="0" align="left">
+                <tr>
+                    <td width="25%">
+                        <b>
+                            @Html.DisplayNameFor(model => model.Dealer.Name)
+                        </b>
+                    </td>
+                    <td >
+                        @Html.DisplayFor(model => model.Dealer.Name)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>
+                            @Html.DisplayNameFor(model => model.Dealer.Email)
+                        </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Dealer.Email)
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <b>
+                            @Html.DisplayNameFor(model => model.Dealer.PhoneNumber)
+                        </b>
+                    </td>
+                    <td>
+                        @Html.DisplayFor(model => model.Dealer.PhoneNumber)
+                    </td>
+                </tr>
+                <tr>
+                    <td colspan="3"></td>
+                </tr>
+            </table>
+        </div>
+
+    </div>
+</div>

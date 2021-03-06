@@ -1,0 +1,277 @@
+﻿@model ASC.Common.AppointmentViewModel
+
+@{
+    ViewBag.Title = "Create";
+    Layout = "~/Areas/AdminsArea/Views/Shared/_AdminLayoutPage.cshtml";
+}
+    <div class="container-fluid">
+        <h1 class="mt-4">Service Booking</h1>
+
+
+
+        <div class="form-horizontal">
+            <ol class="breadcrumb mb-4">
+                <li class="breadcrumb-item active">
+                    @*<button id="myBtn" type="Submit" class="btn btn-danger" style="float: right;"><i class="fas fa-plus"></i> Model</button>*@
+                    New Booking
+                </li>
+            </ol>
+            @using (Html.BeginForm("Create", "Appointment", FormMethod.Get))
+            {
+                <div class="form-group">
+                    Search Customer:
+                    @Html.TextBox("searchData", ViewBag.SearchData as string)
+                    <input type="submit" value="Search" class="btn btn-primary" />
+                </div>
+            }
+            <hr />
+
+            @using (Html.BeginForm("Create", "Appointment", FormMethod.Post))
+            {
+
+                @Html.AntiForgeryToken()
+                @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+
+                if (Model.CustomerVehicles != null)
+                {
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">
+                            Customer Details
+                        </li>
+                    </ol>
+
+                    <div class="card-body" style="padding-top:0px;padding-bottom:0px;">
+                        <div class="table-responsive">
+                            <table class="table" width="100%" cellspacing="0">
+                                <tr style="border-bottom:1px solid #dee2e6;">
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CustomerVehicles.Customer.Name)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CustomerVehicles.Customer.Email)
+                                    </th>
+                                    <th>
+                                        @Html.DisplayNameFor(model => model.CustomerVehicles.Customer.PhoneNumber)
+                                    </th>
+                                </tr>
+                                <tr style="border-bottom:1px solid #dee2e6;">
+                                    <td>
+                                        @Html.DisplayFor(model => model.CustomerVehicles.Customer.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.CustomerVehicles.Customer.Email)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(model => model.CustomerVehicles.Customer.PhoneNumber)
+                                    </td>
+                                </tr>
+                            </table>
+                        </div>
+
+                    </div>
+
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">
+                            Vehicles Details
+                        </li>
+                    </ol>
+
+                    <div class="card-body" style="padding-top:0px;padding-bottom:0px;">
+                        <div class="table-responsive">
+                            <table class="table" width="100%" cellspacing="0">
+                                <tr style="border-bottom:1px solid #dee2e6;">
+                                    <th>
+
+                                    </th>
+                                    <th>
+                                        Name
+                                    </th>
+                                    <th>
+                                        NumberPlate
+                                    </th>
+                                    <th>
+                                        Model
+                                    </th>
+                                    <th>
+                                        Brand
+                                    </th>
+                                </tr>
+                                @foreach (var item in Model.CustomerVehicles.Vehicles)
+                                {
+                                    <tr style="border-bottom:1px solid #dee2e6;">
+                                        <td>
+                                            
+                                            @Html.RadioButtonFor(m => m.ServiceBooking.VehicleId, item.Id)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.NumberPlate)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Model.Name)
+                                        </td>
+                                        <td>
+                                            @Html.DisplayFor(modelItem => item.Model.Brand.Name)
+                                        </td>
+                                    </tr>
+                                }
+
+
+                            </table>
+                        </div>
+
+                    </div>
+                }
+
+
+                <ol class="breadcrumb">
+                    <li class="breadcrumb-item active">
+                        Services Details
+                    </li>
+                </ol>
+
+                <div class="card-body" style="padding-top:0px;padding-bottom:0px;">
+                    <div class="table-responsive">
+                        <table class="table" width="100%" cellspacing="0">
+                            <tr style="border-bottom:1px solid #dee2e6;">
+                                <th>
+                                     
+                                </th>
+                                <th>
+                                    Service Name
+                                </th>
+                                <th>
+                                    Service Type
+                                </th>
+                                <th>
+                                    Service Duration
+                                </th>
+                                <th>
+                                    Amount 
+                                </th>
+                            </tr>
+                            @foreach (var item in Model.Services)
+                            {
+                                <tr style="border-bottom:1px solid #dee2e6;">
+                                    <td>
+                                        <input type="checkbox" name="servicesIds" value="@item.Id" />
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Name)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Type)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Duration)
+                                    </td>
+                                    <td>
+                                        @Html.DisplayFor(modelItem => item.Amount) <b>&#8377;</b>
+                                    </td>
+                                </tr>
+                            }
+
+
+                        </table>
+                    </div>
+
+                </div>
+
+
+                <div>
+
+                    <ol class="breadcrumb">
+                        <li class="breadcrumb-item active">
+                            Other Details
+                        </li>
+                    </ol>
+                    <div class="form-horizontal">
+
+                        <hr />
+                        <div class="container">
+                            <div class="row">
+
+                                <div class="col-md-6">
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.ServiceBooking.BookingDate, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.EditorFor(model => model.ServiceBooking.BookingDate, new { htmlAttributes = new { Type = "Date", @class = "form-control" } })
+                                            @Html.ValidationMessageFor(model => model.ServiceBooking.BookingDate, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.ServiceBooking.PickupAddress, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.TextAreaFor(model => model.ServiceBooking.PickupAddress, new { @class = "form-control", value = "added text" })
+                                            @Html.ValidationMessageFor(model => model.ServiceBooking.PickupAddress, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                </div>
+                                <div class="col-md-6">
+
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.ServiceBooking.DealerId, htmlAttributes: new { @class = "control-label col-md-4" })
+                                        <div class="col-md-8">
+                                            @Html.DropDownListFor(model => model.ServiceBooking.DealerId, new SelectList(Model.Dealers, "Id", "Name"), "Select", new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.ServiceBooking.DealerId, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+
+                                    <div class="form-group row">
+                                        @Html.LabelFor(model => model.ServiceBooking.DropAddress, htmlAttributes: new { @class = "control-label col-md-4" })
+
+                                        <div class="col-md-8">
+                                            @Html.TextAreaFor(model => model.ServiceBooking.DropAddress, new { @class = "form-control" })
+                                            @Html.ValidationMessageFor(model => model.ServiceBooking.DropAddress, "", new { @class = "text-danger" })
+                                        </div>
+                                    </div>
+                                    <div class="form-group row">
+                                        <div class="col-md-4"></div>
+                                        <div class="col-md-6">
+                                            <input type="checkbox" id="SameAs" class="checkbox" />
+                                            Same as PickUp
+                                        </div>
+
+                                    </div>
+
+                                </div>
+                            </div>
+                        </div>
+
+
+                        <div align="center" class="form-group" style="border-bottom: 1px solid #eeeeee; margin-bottom: 20px; padding-bottom: 10px;">
+                            <div class="col-md-offset-5 col-md-2" align="center">
+                                <input type="submit" value="BOOK APPOINTMENT" class="btn btn-info" />
+
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+        </div>
+
+@section scripts{
+    <script>     
+        $(document).ready(function () {
+            $('#SameAs').click(function () {
+                if ($(this).is(":checked")) {
+                    var Data = $("#ServiceBooking_PickupAddress").val();
+                    $('#ServiceBooking_DropAddress').val(Data);
+                }
+                else {
+                     $('#ServiceBooking_DropAddress').val("");
+                }
+            });
+        });
+    </script>
+}
+
+
+
