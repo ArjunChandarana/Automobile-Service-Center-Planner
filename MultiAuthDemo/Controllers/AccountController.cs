@@ -90,9 +90,14 @@ namespace MultiAuthDemo.Controllers
                     var user = await UserManager.FindAsync(model.UserName, model.Password);
                     var roles = await UserManager.GetRolesAsync(user.Id);
 
-                    if (roles.Contains("Employee"))
+                    if (roles.Contains("Dealer"))
                     {
-                        return RedirectToAction("About", "Home");
+                        return RedirectToAction("About", "Home", new { area = "DealersArea" });
+                    }
+
+                    else if (roles.Contains("Customer"))
+                    {
+                        return RedirectToAction("About", "Home", new { area = "CustomersArea" });
                     }
                     else if (roles.Contains("Admin"))
                     {
@@ -162,7 +167,7 @@ namespace MultiAuthDemo.Controllers
         [AllowAnonymous]
         public ActionResult Register()
         {
-            ViewBag.Name = new SelectList(context.Roles.Where(u => !u.Name.Contains("Admin"))
+            ViewBag.Name = new SelectList(context.Roles.Where(u => !(u.Name.Contains("Admin") || u.Name.Contains("Dealer")))
                                     .ToList(), "Name", "Name");
             return PartialView();
         }

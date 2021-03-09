@@ -1,11 +1,11 @@
 ﻿@model MultiAuthDemo.Models.RegisterViewModel
-@{ ViewBag.Title = "Register"; }
+@{ ViewBag.Title = "Automobile Service Center Planner"; }
 
 <h2>@ViewBag.Title.</h2>
 
 <link href="~/Template/css/TempRegistration.css" rel="stylesheet" />
 
-<h2>Weekly Coding Challenge #1: Sign in/up Form</h2>
+<h2>SignUp</h2>
 <div class="container right-panel-active" id="container">
     <div class="form-container sign-up-container">
         @using (Html.BeginForm("Register", "Account", FormMethod.Post, new { @class = "", role = "form" }))
@@ -16,12 +16,12 @@
             <h1>Create Account</h1>
             <div class="social-container"></div>
             @Html.TextBoxFor(m => m.Email, new { @class = "", placeholder = "Email" })
-                @Html.TextBoxFor(m => m.UserName, new { @class = "", placeholder = "User Name" })
-                @Html.PasswordFor(m => m.Password, new { @class = "", placeholder ="Password"})
-                @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "", placeholder ="ConfirmPassword"})
-             @Html.DropDownList("UserRoles", (SelectList)ViewBag.Name, " ")
+            @Html.TextBoxFor(m => m.UserName, new { @class = "", placeholder = "User Name" })
+            @Html.PasswordFor(m => m.Password, new { @class = "", placeholder ="Password"})
+            @Html.PasswordFor(m => m.ConfirmPassword, new { @class = "", placeholder ="ConfirmPassword"})
+            @Html.DropDownList("UserRoles", (SelectList)ViewBag.Name, " ")
                  
-                <input type="submit" class="ghost" id="signIn" value="Register" />
+                <input type="submit" class="ghost" id="signIn" value="SignUp" />    
         }
     </div>
      
